@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#5b5bd6">
+  <meta name="description" content="A private, offline-first learning notebook">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+  <title>My Learning Notes</title>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand"><div class="brand-mark">✦</div><div><strong>My Learning</strong><small>Notes</small></div></div>
+      <button class="new-note" id="newNote">＋ New note <kbd>Ctrl N</kbd></button>
+      <label class="search-box">⌕<input id="searchInput" placeholder="Search notes..." autocomplete="off"></label>
+      <nav id="mainNav">
+        <button data-view="dashboard">⌂ <span>Dashboard</span></button>
+        <button data-view="all">▤ <span>All notes</span><b id="allCount">0</b></button>
+        <button data-view="favorites">★ <span>Favorites</span></button>
+        <button data-view="recent">◷ <span>Recent</span></button>
+        <button data-view="revision">↻ <span>Revision</span></button>
+        <button data-view="trash">⌫ <span>Trash</span><b id="trashCount">0</b></button>
+      </nav>
+      <div class="side-heading"><span>Subjects</span><button id="addSubject" title="Add subject">＋</button></div>
+      <div id="subjectsList" class="subjects"></div>
+      <div class="side-heading"><span>Tags</span></div><div id="tagsList" class="tags"></div>
+      <button class="settings-link" data-view="settings">⚙ <span>Settings</span></button>
+    </aside>
+    <main class="workspace">
+      <header class="mobile-header"><button id="menuButton">☰</button><strong>My Learning Notes</strong></header>
+      <section class="list-panel"><div class="panel-header"><div><p class="eyebrow" id="viewEyebrow">OVERVIEW</p><h1 id="viewTitle">Dashboard</h1></div><button id="installButton" class="quiet hidden">Install app</button></div><div id="contentView"></div></section>
+      <section class="editor-panel" id="editorPanel">
+        <div class="editor-top"><input id="noteTitle" class="title-input" placeholder="Untitled note"><button id="favoriteButton" class="icon-button" title="Favorite">☆</button><button id="deleteButton" class="icon-button" title="Move to trash">⌫</button></div>
+        <div class="metadata"><select id="subjectSelect" aria-label="Subject"></select><input id="noteTags" placeholder="Tags, separated by commas"><span id="saveStatus">Saved</span></div>
+        <div class="toolbar" role="toolbar"><select id="formatBlock" title="Text style"><option value="p">Paragraph</option><option value="h1">Heading 1</option><option value="h2">Heading 2</option><option value="h3">Heading 3</option><option value="blockquote">Quote</option><pre> </pre></select><button data-command="bold"><b>B</b></button><button data-command="italic"><i>I</i></button><button data-command="underline"><u>U</u></button><button data-command="hiliteColor" data-value="#fff1a8">Highlight</button><button data-command="insertUnorderedList">• List</button><button data-command="insertOrderedList">1. List</button><button data-command="formatBlock" data-value="pre">Code</button><button id="linkButton">Link</button><button data-command="insertHorizontalRule">―</button></div>
+        <div class="motivation">Small progress every day becomes big knowledge.</div>
+        <div id="editor" class="editor" contenteditable="true" data-placeholder="Start writing your note..."></div>
+        <div class="editor-footer"><span id="wordCount">0 words</span><span>Local only · <span id="lastSaved">Ready</span></span></div>
+      </section>
+    </main>
+  </div>
+  <div id="toast" class="toast"></div>
+  <dialog id="subjectDialog"><form method="dialog" id="subjectForm"><h2>New subject</h2><input id="subjectName" required placeholder="e.g. Java"><div class="dialog-actions"><button value="cancel">Cancel</button><button class="primary" value="save">Create</button></div></form></dialog>
+  <dialog id="importDialog"><form method="dialog"><h2>Import backup</h2><p id="importSummary"></p><div class="dialog-actions"><button value="cancel">Cancel</button><button id="mergeImport" value="merge">Merge</button><button id="replaceImport" class="primary" value="replace">Replace</button></div></form></dialog>
+  <script src="db.js"></script><script src="settings.js"></script><script src="editor.js"></script><script src="search.js"></script><script src="backup.js"></script><script src="app.js"></script><script src="delete.js"></script>
+</body>
+</html>

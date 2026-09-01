@@ -1,0 +1,1 @@
+(function(){window.Search={text(q,notes){q=q.trim().toLowerCase();if(!q)return notes;return notes.filter(n=>(n.title+" "+n.content+" "+n.subject+" "+(n.tags||[]).join(" ")).toLowerCase().includes(q))}}})();
